@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace BanHangOnline.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -54,6 +55,7 @@ namespace BanHangOnline.Areas.Admin.Controllers
                 model.Alias = BanHangOnline.Models.Common.Filter.FilterChar(model.Title);
                 db.Entry(model).Property(x=>x.Title).IsModified= true;
                 db.Entry(model).Property(x => x.Description).IsModified = true;
+                db.Entry(model).Property(x => x.Link).IsModified = true;
                 db.Entry(model).Property(x => x.Alias).IsModified = true;
                 db.Entry(model).Property(x => x.SeoDescription).IsModified = true;
                 db.Entry(model).Property(x => x.SeoKeywords).IsModified = true;

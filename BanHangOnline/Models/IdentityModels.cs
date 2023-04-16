@@ -28,6 +28,7 @@ namespace BanHangOnline.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public DbSet<ThongKe> ThongKes { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Adv> Advs { get; set; }
         public DbSet<Posts> Posts { get; set; }
@@ -35,6 +36,7 @@ namespace BanHangOnline.Models
         public DbSet<SystemSetting> SystemSettings { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }

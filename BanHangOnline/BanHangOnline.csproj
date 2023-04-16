@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BanHangOnline</RootNamespace>
     <AssemblyName>BanHangOnline</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,6 +51,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Content\ckfinder\bin\Release\CKFinder.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -59,16 +63,14 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -113,6 +115,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -179,15 +182,28 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductImageController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingSystemController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticalController.cs" />
+    <Compile Include="Common\SettingHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -215,10 +231,65 @@
     <Compile Include="Migrations\202303130854389_UpdateProductCategory.designer.cs">
       <DependentUpon>202303130854389_UpdateProductCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303141457355_Update.cs" />
+    <Compile Include="Migrations\202303141457355_Update.designer.cs">
+      <DependentUpon>202303141457355_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303161220533_Update1603.cs" />
+    <Compile Include="Migrations\202303161220533_Update1603.designer.cs">
+      <DependentUpon>202303161220533_Update1603.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303161237450_Update16031.cs" />
+    <Compile Include="Migrations\202303161237450_Update16031.designer.cs">
+      <DependentUpon>202303161237450_Update16031.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303161318287_Update16032.cs" />
+    <Compile Include="Migrations\202303161318287_Update16032.designer.cs">
+      <DependentUpon>202303161318287_Update16032.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303191148511_Update1903.cs" />
+    <Compile Include="Migrations\202303191148511_Update1903.designer.cs">
+      <DependentUpon>202303191148511_Update1903.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303201516080_Update2003.cs" />
+    <Compile Include="Migrations\202303201516080_Update2003.designer.cs">
+      <DependentUpon>202303201516080_Update2003.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303250733354_UpdatePayment.cs" />
+    <Compile Include="Migrations\202303250733354_UpdatePayment.designer.cs">
+      <DependentUpon>202303250733354_UpdatePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304041216014_CreateTBThongKe.cs" />
+    <Compile Include="Migrations\202304041216014_CreateTBThongKe.designer.cs">
+      <DependentUpon>202304041216014_CreateTBThongKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304110206450_UpdateEmail.cs" />
+    <Compile Include="Migrations\202304110206450_UpdateEmail.designer.cs">
+      <DependentUpon>202304110206450_UpdateEmail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304140213216_UpdateSubcribe.cs" />
+    <Compile Include="Migrations\202304140213216_UpdateSubcribe.designer.cs">
+      <DependentUpon>202304140213216_UpdateSubcribe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304150656187_UpdateOriginalPrice.cs" />
+    <Compile Include="Migrations\202304150656187_UpdateOriginalPrice.designer.cs">
+      <DependentUpon>202304150656187_UpdateOriginalPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304151649443_EditCategory2.cs" />
+    <Compile Include="Migrations\202304151649443_EditCategory2.designer.cs">
+      <DependentUpon>202304151649443_EditCategory2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304151903022_AddStatus.cs" />
+    <Compile Include="Migrations\202304151903022_AddStatus.designer.cs">
+      <DependentUpon>202304151903022_AddStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstract.cs" />
+    <Compile Include="Models\Common\Common.cs" />
     <Compile Include="Models\Common\Filter.cs" />
+    <Compile Include="Models\Common\ThongKeTruyCap.cs" />
+    <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\EF\Adv.cs" />
     <Compile Include="Models\EF\Category.cs" />
     <Compile Include="Models\EF\Contact.cs" />
@@ -231,12 +302,255 @@
     <Compile Include="Models\EF\ProductImage.cs" />
     <Compile Include="Models\EF\Subscribe.cs" />
     <Compile Include="Models\EF\SystemSetting.cs" />
+    <Compile Include="Models\EF\ThongKe.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
+    <Compile Include="Models\Payments\VnPayLibrary.cs" />
+    <Compile Include="Models\SettingSystemViewModel.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
+    <Compile Include="Models\ThongKeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\dist\css\adminlte.css" />
+    <Content Include="Content\assets\dist\css\adminlte.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.components.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.components.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.core.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.core.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.extra-components.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.light.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.light.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.pages.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.pages.min.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.plugins.css" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Content\assets\dist\img\AdminLTELogo.png" />
+    <Content Include="Content\assets\dist\img\avatar.png" />
+    <Content Include="Content\assets\dist\img\avatar2.png" />
+    <Content Include="Content\assets\dist\img\avatar3.png" />
+    <Content Include="Content\assets\dist\img\avatar4.png" />
+    <Content Include="Content\assets\dist\img\avatar5.png" />
+    <Content Include="Content\assets\dist\img\boxed-bg.jpg" />
+    <Content Include="Content\assets\dist\img\boxed-bg.png" />
+    <Content Include="Content\assets\dist\img\credit\american-express.png" />
+    <Content Include="Content\assets\dist\img\credit\cirrus.png" />
+    <Content Include="Content\assets\dist\img\credit\mastercard.png" />
+    <Content Include="Content\assets\dist\img\credit\paypal.png" />
+    <Content Include="Content\assets\dist\img\credit\paypal2.png" />
+    <Content Include="Content\assets\dist\img\credit\visa.png" />
+    <Content Include="Content\assets\dist\img\default-150x150.png" />
+    <Content Include="Content\assets\dist\img\icons.png" />
+    <Content Include="Content\assets\dist\img\photo1.png" />
+    <Content Include="Content\assets\dist\img\photo2.png" />
+    <Content Include="Content\assets\dist\img\photo3.jpg" />
+    <Content Include="Content\assets\dist\img\photo4.jpg" />
+    <Content Include="Content\assets\dist\img\prod-1.jpg" />
+    <Content Include="Content\assets\dist\img\prod-2.jpg" />
+    <Content Include="Content\assets\dist\img\prod-3.jpg" />
+    <Content Include="Content\assets\dist\img\prod-4.jpg" />
+    <Content Include="Content\assets\dist\img\prod-5.jpg" />
+    <Content Include="Content\assets\dist\img\user1-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user2-160x160.jpg" />
+    <Content Include="Content\assets\dist\img\user3-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user4-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user5-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user6-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user7-128x128.jpg" />
+    <Content Include="Content\assets\dist\img\user8-128x128.jpg" />
+    <Content Include="Content\assets\dist\js\adminlte.js" />
+    <Content Include="Content\assets\dist\js\adminlte.min.js" />
+    <Content Include="Content\assets\dist\js\demo.js" />
+    <Content Include="Content\assets\dist\js\pages\dashboard.js" />
+    <Content Include="Content\assets\dist\js\pages\dashboard2.js" />
+    <Content Include="Content\assets\dist\js\pages\dashboard3.js" />
+    <Content Include="Content\assets\images\blog_1.jpg" />
+    <Content Include="Content\assets\images\blog_2.jpg" />
+    <Content Include="Content\assets\images\blog_3.jpg" />
+    <Content Include="Content\assets\images\deal_ofthe_week2-removebg-preview.png" />
+    <Content Include="Content\assets\images\map_marker.png" />
+    <Content Include="Content\assets\images\slider1.jpg" />
+    <Content Include="Content\assets\js\categories_custom.js" />
+    <Content Include="Content\assets\js\contact_custom.js" />
+    <Content Include="Content\assets\js\custom.js" />
+    <Content Include="Content\assets\js\jquery-3.2.1.min.js" />
+    <Content Include="Content\assets\js\single_custom.js" />
+    <Content Include="Content\assets\plugins\chart.js\Chart.bundle.js" />
+    <Content Include="Content\assets\plugins\chart.js\Chart.bundle.min.js" />
+    <Content Include="Content\assets\plugins\chart.js\Chart.css" />
+    <Content Include="Content\assets\plugins\chart.js\Chart.js" />
+    <Content Include="Content\assets\plugins\chart.js\Chart.min.css" />
+    <Content Include="Content\assets\plugins\chart.js\Chart.min.js" />
+    <Content Include="Content\assets\plugins\easing\easing.js" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\assets\plugins\Isotope\isotope.pkgd.min.js" />
+    <Content Include="Content\assets\plugins\jquery-ui-1.12.1.custom\jquery-ui.css" />
+    <Content Include="Content\assets\plugins\jquery-ui-1.12.1.custom\jquery-ui.js" />
+    <Content Include="Content\assets\plugins\moment\locales.js" />
+    <Content Include="Content\assets\plugins\moment\locales.min.js" />
+    <Content Include="Content\assets\plugins\moment\locale\af.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ar-dz.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ar-kw.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ar-ly.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ar-ma.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ar-sa.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ar-tn.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ar.js" />
+    <Content Include="Content\assets\plugins\moment\locale\az.js" />
+    <Content Include="Content\assets\plugins\moment\locale\be.js" />
+    <Content Include="Content\assets\plugins\moment\locale\bg.js" />
+    <Content Include="Content\assets\plugins\moment\locale\bm.js" />
+    <Content Include="Content\assets\plugins\moment\locale\bn-bd.js" />
+    <Content Include="Content\assets\plugins\moment\locale\bn.js" />
+    <Content Include="Content\assets\plugins\moment\locale\bo.js" />
+    <Content Include="Content\assets\plugins\moment\locale\br.js" />
+    <Content Include="Content\assets\plugins\moment\locale\bs.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ca.js" />
+    <Content Include="Content\assets\plugins\moment\locale\cs.js" />
+    <Content Include="Content\assets\plugins\moment\locale\cv.js" />
+    <Content Include="Content\assets\plugins\moment\locale\cy.js" />
+    <Content Include="Content\assets\plugins\moment\locale\da.js" />
+    <Content Include="Content\assets\plugins\moment\locale\de-at.js" />
+    <Content Include="Content\assets\plugins\moment\locale\de-ch.js" />
+    <Content Include="Content\assets\plugins\moment\locale\de.js" />
+    <Content Include="Content\assets\plugins\moment\locale\dv.js" />
+    <Content Include="Content\assets\plugins\moment\locale\el.js" />
+    <Content Include="Content\assets\plugins\moment\locale\en-au.js" />
+    <Content Include="Content\assets\plugins\moment\locale\en-ca.js" />
+    <Content Include="Content\assets\plugins\moment\locale\en-gb.js" />
+    <Content Include="Content\assets\plugins\moment\locale\en-ie.js" />
+    <Content Include="Content\assets\plugins\moment\locale\en-il.js" />
+    <Content Include="Content\assets\plugins\moment\locale\en-in.js" />
+    <Content Include="Content\assets\plugins\moment\locale\en-nz.js" />
+    <Content Include="Content\assets\plugins\moment\locale\en-SG.js" />
+    <Content Include="Content\assets\plugins\moment\locale\eo.js" />
+    <Content Include="Content\assets\plugins\moment\locale\es-do.js" />
+    <Content Include="Content\assets\plugins\moment\locale\es-mx.js" />
+    <Content Include="Content\assets\plugins\moment\locale\es-us.js" />
+    <Content Include="Content\assets\plugins\moment\locale\es.js" />
+    <Content Include="Content\assets\plugins\moment\locale\et.js" />
+    <Content Include="Content\assets\plugins\moment\locale\eu.js" />
+    <Content Include="Content\assets\plugins\moment\locale\fa.js" />
+    <Content Include="Content\assets\plugins\moment\locale\fi.js" />
+    <Content Include="Content\assets\plugins\moment\locale\fil.js" />
+    <Content Include="Content\assets\plugins\moment\locale\fo.js" />
+    <Content Include="Content\assets\plugins\moment\locale\fr-ca.js" />
+    <Content Include="Content\assets\plugins\moment\locale\fr-ch.js" />
+    <Content Include="Content\assets\plugins\moment\locale\fr.js" />
+    <Content Include="Content\assets\plugins\moment\locale\fy.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ga.js" />
+    <Content Include="Content\assets\plugins\moment\locale\gd.js" />
+    <Content Include="Content\assets\plugins\moment\locale\gl.js" />
+    <Content Include="Content\assets\plugins\moment\locale\gom-deva.js" />
+    <Content Include="Content\assets\plugins\moment\locale\gom-latn.js" />
+    <Content Include="Content\assets\plugins\moment\locale\gu.js" />
+    <Content Include="Content\assets\plugins\moment\locale\he.js" />
+    <Content Include="Content\assets\plugins\moment\locale\hi.js" />
+    <Content Include="Content\assets\plugins\moment\locale\hr.js" />
+    <Content Include="Content\assets\plugins\moment\locale\hu.js" />
+    <Content Include="Content\assets\plugins\moment\locale\hy-am.js" />
+    <Content Include="Content\assets\plugins\moment\locale\id.js" />
+    <Content Include="Content\assets\plugins\moment\locale\is.js" />
+    <Content Include="Content\assets\plugins\moment\locale\it-ch.js" />
+    <Content Include="Content\assets\plugins\moment\locale\it.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ja.js" />
+    <Content Include="Content\assets\plugins\moment\locale\jv.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ka.js" />
+    <Content Include="Content\assets\plugins\moment\locale\kk.js" />
+    <Content Include="Content\assets\plugins\moment\locale\km.js" />
+    <Content Include="Content\assets\plugins\moment\locale\kn.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ko.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ku.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ky.js" />
+    <Content Include="Content\assets\plugins\moment\locale\lb.js" />
+    <Content Include="Content\assets\plugins\moment\locale\lo.js" />
+    <Content Include="Content\assets\plugins\moment\locale\lt.js" />
+    <Content Include="Content\assets\plugins\moment\locale\lv.js" />
+    <Content Include="Content\assets\plugins\moment\locale\me.js" />
+    <Content Include="Content\assets\plugins\moment\locale\mi.js" />
+    <Content Include="Content\assets\plugins\moment\locale\mk.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ml.js" />
+    <Content Include="Content\assets\plugins\moment\locale\mn.js" />
+    <Content Include="Content\assets\plugins\moment\locale\mr.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ms-my.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ms.js" />
+    <Content Include="Content\assets\plugins\moment\locale\mt.js" />
+    <Content Include="Content\assets\plugins\moment\locale\my.js" />
+    <Content Include="Content\assets\plugins\moment\locale\nb.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ne.js" />
+    <Content Include="Content\assets\plugins\moment\locale\nl-be.js" />
+    <Content Include="Content\assets\plugins\moment\locale\nl.js" />
+    <Content Include="Content\assets\plugins\moment\locale\nn.js" />
+    <Content Include="Content\assets\plugins\moment\locale\oc-lnc.js" />
+    <Content Include="Content\assets\plugins\moment\locale\pa-in.js" />
+    <Content Include="Content\assets\plugins\moment\locale\pl.js" />
+    <Content Include="Content\assets\plugins\moment\locale\pt-br.js" />
+    <Content Include="Content\assets\plugins\moment\locale\pt.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ro.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ru.js" />
+    <Content Include="Content\assets\plugins\moment\locale\sd.js" />
+    <Content Include="Content\assets\plugins\moment\locale\se.js" />
+    <Content Include="Content\assets\plugins\moment\locale\si.js" />
+    <Content Include="Content\assets\plugins\moment\locale\sk.js" />
+    <Content Include="Content\assets\plugins\moment\locale\sl.js" />
+    <Content Include="Content\assets\plugins\moment\locale\sq.js" />
+    <Content Include="Content\assets\plugins\moment\locale\sr-cyrl.js" />
+    <Content Include="Content\assets\plugins\moment\locale\sr.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ss.js" />
+    <Content Include="Content\assets\plugins\moment\locale\sv.js" />
+    <Content Include="Content\assets\plugins\moment\locale\sw.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ta.js" />
+    <Content Include="Content\assets\plugins\moment\locale\te.js" />
+    <Content Include="Content\assets\plugins\moment\locale\tet.js" />
+    <Content Include="Content\assets\plugins\moment\locale\tg.js" />
+    <Content Include="Content\assets\plugins\moment\locale\th.js" />
+    <Content Include="Content\assets\plugins\moment\locale\tk.js" />
+    <Content Include="Content\assets\plugins\moment\locale\tl-ph.js" />
+    <Content Include="Content\assets\plugins\moment\locale\tlh.js" />
+    <Content Include="Content\assets\plugins\moment\locale\tr.js" />
+    <Content Include="Content\assets\plugins\moment\locale\tzl.js" />
+    <Content Include="Content\assets\plugins\moment\locale\tzm-latn.js" />
+    <Content Include="Content\assets\plugins\moment\locale\tzm.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ug-cn.js" />
+    <Content Include="Content\assets\plugins\moment\locale\uk.js" />
+    <Content Include="Content\assets\plugins\moment\locale\ur.js" />
+    <Content Include="Content\assets\plugins\moment\locale\uz-latn.js" />
+    <Content Include="Content\assets\plugins\moment\locale\uz.js" />
+    <Content Include="Content\assets\plugins\moment\locale\vi.js" />
+    <Content Include="Content\assets\plugins\moment\locale\x-pseudo.js" />
+    <Content Include="Content\assets\plugins\moment\locale\yo.js" />
+    <Content Include="Content\assets\plugins\moment\locale\zh-cn.js" />
+    <Content Include="Content\assets\plugins\moment\locale\zh-hk.js" />
+    <Content Include="Content\assets\plugins\moment\locale\zh-mo.js" />
+    <Content Include="Content\assets\plugins\moment\locale\zh-tw.js" />
+    <Content Include="Content\assets\plugins\moment\moment-with-locales.js" />
+    <Content Include="Content\assets\plugins\moment\moment-with-locales.min.js" />
+    <Content Include="Content\assets\plugins\moment\moment.min.js" />
+    <Content Include="Content\assets\plugins\OwlCarousel2-2.2.1\ajax-loader.gif" />
+    <Content Include="Content\assets\plugins\OwlCarousel2-2.2.1\animate.css" />
+    <Content Include="Content\assets\plugins\OwlCarousel2-2.2.1\owl.carousel.css" />
+    <Content Include="Content\assets\plugins\OwlCarousel2-2.2.1\owl.carousel.js" />
+    <Content Include="Content\assets\plugins\OwlCarousel2-2.2.1\owl.theme.default.css" />
+    <Content Include="Content\assets\plugins\OwlCarousel2-2.2.1\owl.video.play.png" />
+    <Content Include="Content\assets\plugins\themify-icons\fonts\themify.svg" />
+    <Content Include="Content\assets\plugins\themify-icons\themify-icons.css" />
+    <Content Include="Content\assets\styles\bootstrap4\bootstrap.min.css" />
+    <Content Include="Content\assets\styles\bootstrap4\bootstrap.min.js" />
+    <Content Include="Content\assets\styles\bootstrap4\popper.js" />
+    <Content Include="Content\assets\styles\categories_responsive.css" />
+    <Content Include="Content\assets\styles\categories_styles.css" />
+    <Content Include="Content\assets\styles\contact_responsive.css" />
+    <Content Include="Content\assets\styles\contact_styles.css" />
+    <Content Include="Content\assets\styles\main_styles.css" />
+    <Content Include="Content\assets\styles\responsive.css" />
+    <Content Include="Content\assets\styles\single_responsive.css" />
+    <Content Include="Content\assets\styles\single_styles.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1149,7 +1463,6 @@
     <Content Include="Content\clients\dist\css\alt\adminlte.pages.min.css" />
     <Content Include="Content\clients\dist\css\alt\adminlte.plugins.css" />
     <Content Include="Content\clients\dist\css\alt\adminlte.plugins.min.css" />
-    <Content Include="Content\clients\dist\img\AdminLTELogo.png" />
     <Content Include="Content\clients\dist\img\anhdaidien.jpg" />
     <Content Include="Content\clients\dist\img\avatar.png" />
     <Content Include="Content\clients\dist\img\avatar2.png" />
@@ -1166,6 +1479,7 @@
     <Content Include="Content\clients\dist\img\credit\visa.png" />
     <Content Include="Content\clients\dist\img\default-150x150.png" />
     <Content Include="Content\clients\dist\img\icons.png" />
+    <Content Include="Content\clients\dist\img\logo.jpg" />
     <Content Include="Content\clients\dist\img\photo1.png" />
     <Content Include="Content\clients\dist\img\photo2.png" />
     <Content Include="Content\clients\dist\img\photo3.jpg" />
@@ -1189,7 +1503,6 @@
     <Content Include="Content\clients\dist\js\pages\dashboard.js" />
     <Content Include="Content\clients\dist\js\pages\dashboard2.js" />
     <Content Include="Content\clients\dist\js\pages\dashboard3.js" />
-    <Content Include="Content\clients\index3.html" />
     <Content Include="Content\clients\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css" />
     <Content Include="Content\clients\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css" />
     <Content Include="Content\clients\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js" />
@@ -3029,6 +3342,8 @@
     <Content Include="Content\clients\plugins\uplot\uPlot.iife.min.js" />
     <Content Include="Content\clients\plugins\uplot\uPlot.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\templates\send1.html" />
+    <Content Include="Content\templates\send2.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -3147,31 +3462,182 @@
     <Content Include="Areas\Admin\Views\Products\Add.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductImage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutEmpty.cshtml" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\assets\plugins\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\assets\plugins\themify-icons\fonts\themify.eot" />
+    <Content Include="Content\assets\plugins\themify-icons\fonts\themify.ttf" />
+    <Content Include="Content\assets\plugins\themify-icons\fonts\themify.woff" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
+    <Content Include="Content\assets\dist\css\adminlte.css.map" />
+    <Content Include="Content\assets\dist\css\adminlte.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.components.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.components.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.core.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.core.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.light.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.light.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.pages.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.plugins.css.map" />
+    <Content Include="Content\assets\dist\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Content\assets\dist\js\.eslintrc.json" />
+    <Content Include="Content\assets\dist\js\adminlte.js.map" />
+    <Content Include="Content\assets\dist\js\adminlte.min.js.map" />
+    <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Partial_SanPham.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingSystem\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SettingSystem\Partial_Setting.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistical\Index.cshtml" />
+    <Content Include="Content\assets\plugins\moment\locales.min.js.map" />
+    <Content Include="Content\assets\plugins\moment\moment-with-locales.min.js.map" />
+    <Content Include="Content\assets\plugins\moment\moment.min.js.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jsShopping.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Uploads\images\dangky.jpg" />
-    <Content Include="Uploads\images\dangnhap.jpg" />
-    <Content Include="Uploads\images\database.jpg" />
-    <Content Include="Uploads\images\dathang.jpg" />
-    <Content Include="Uploads\images\rubik1.jpg" />
-    <Content Include="Uploads\images\thongke.jpg" />
-    <Content Include="Uploads\images\xacnhan.jpg" />
-    <Content Include="Uploads\_thumbs\Images\dangky.jpg" />
-    <Content Include="Uploads\_thumbs\Images\dangnhap.jpg" />
-    <Content Include="Uploads\_thumbs\Images\database.jpg" />
-    <Content Include="Uploads\_thumbs\Images\dathang.jpg" />
-    <Content Include="Uploads\_thumbs\Images\rubik1.jpg" />
-    <Content Include="Uploads\_thumbs\Images\thongke.jpg" />
-    <Content Include="Uploads\_thumbs\Images\xacnhan.jpg" />
+    <Content Include="Uploads\images\sanpham\cam_txn650_1_20230116092134_894c6c2e1bdf4079adc8f8b934315581_master.jpeg" />
+    <Content Include="Uploads\images\sanpham\cam_txn650_2_20230202102956_d8b30597df9a43cf9d7c506c02a798f1_master.jpeg" />
+    <Content Include="Uploads\images\sanpham\caro-do_jnkhc006_1_cc0d17c8428a4880a35f50e8961ebd5d_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\caro-do_jnkhc006_4_1280f70a5f554864bb655c5bfc4177a5_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\den_jnath009_2_55ed0b79f8074eb98e210333740f4672_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\den_jnath009_3_2e0cdb133fc74593bd350b6971eced10_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\den_txn677_17_20230218110221_ccf3c302abb743a494d7da4ef5312cd8_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\den_txn677_22_20230223144520_74fb3a68a1a142a38e531c8d5daa5e3f_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\do_jnath006_1_3f9dd056a6e64bc78bee3d0fdec759fc_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\do_jnath006_2_b6c4b4606ca248418cd32e2ed620391b_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\do_jnath018_1_20220817111005_e4e9817e232f40b09b7a391215bd4072_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\do_jnath018_2_20220817111005_94a88423bc7340b280392505a1661463_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\do_txn663_1_20230207095419_2ba35000a9484cb8ad9c6d6637c31795_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\do_txn663_2_20230207095420_14f89e9f466e456cb39f27f12dbe6d81_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\do_txn664_22_20230207100415_c1400bc1dd374b89b7b8aa8ba858a34f_master.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong-do_txn667_12_20230307175159_06a0f4dbc9c54f138c4d3e3738b0a5d4_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong-do_txn667_1_20230227095410_c20e9e2fff5e4914850edf595da74897_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong-do_txn669_1_20230227101847_41d9f3c06d1c420b89d85559c439063b_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong-do_txn669_2_20230307175555_fa129097f6e3442396ebf3771396bee6_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong_jndlu030_1_20220629092358_4584f52c7d8645059179e806c9a82616_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong_jndlu030_2_20220629092358_da958337e4f14897aa44aecec62a3219_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong_jndng002_1_f98caec033984144ae9408fbba53437f_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\hong_jndng002_2_d7f3183e74d44676840501d6a1643784_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\hong_txn645_25_20230115183338_9cf0216b41a841e2ac276b15f894d881_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong_txn645_32_20230130103917_5338b5159d134a8885d93467b822423c_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong_txn648_25_20230115185700_f77e46a7c1a64c2dbe91a897f07316ba_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong_txn648_2_20230130104226_2dd9e8fff3344fd4a0e0b08ca8161365_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong_txn655_12_20230112094903_ede5e997dc734fab8ac13ab29ac0ab26_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong_txn655_9_20230110144240_fd9d813dbf9c42df9985f2f4c4591397_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong_txn656_1_20230109024826_a816aa9c3cca4fa694ec43efd552af0d_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\hong_txn656_2_20230113140038_5f66f0b9c2094ab39d4367055743dd83_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\kem_jnvlu001_1_99be27566bb64f47a415d779e95536a1_master.jpg" />
+    <Content Include="Uploads\images\sanpham\kem_jnvlu001_3_1694b4abbaf1467b97128155658c3f14_master.jpg" />
+    <Content Include="Uploads\images\sanpham\nau_jnqsh006_1_d4eb8cdd86d948bea7f5d29d6352f9ae_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\nau_jnqsh006_4_ce3d8ca719e9415dbeadc4d20f51e28b_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\nau_jnvlu007_1_20220728135545_6c8ec60e50934a2a961237d1087d20c7_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\nau_jnvlu007_2_20220728135545_493f4504fb2749b5b84104b764a4fe65_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\xanh_jnaki002_1_ca4ff9e4ea4643489241721cf621c54c_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\xanh_jnaki002_2_161e17f901eb4cc5aaf606cbdcb11906_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\xanh_jnath005_1_3ccb6a52c814412cbad1932adb431651_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\xanh_jnath005_2_c92767fff4fe4eb5a7117ed9eb07b99d_grande.jpg" />
+    <Content Include="Uploads\images\sanpham\xanh_jnath021_1_20220725193631_2de38a6deb9946139ac46ac9f232896d_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\xanh_jnath021_2_20220725193631_5e53bd3e2f15439cb08459cda3f7ad35_grande.jpeg" />
+    <Content Include="Uploads\images\setting\logo.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\blog_1.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\blog_2.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\blog_3.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\cam_txn650_1_20230116092134_894c6c2e1bdf4079adc8f8b934315581_master.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\cam_txn650_2_20230202102956_d8b30597df9a43cf9d7c506c02a798f1_master.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\caro-do_jnkhc006_1_cc0d17c8428a4880a35f50e8961ebd5d_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\caro-do_jnkhc006_4_1280f70a5f554864bb655c5bfc4177a5_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\den_jnath009_2_55ed0b79f8074eb98e210333740f4672_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\den_jnath009_3_2e0cdb133fc74593bd350b6971eced10_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\den_txn677_17_20230218110221_ccf3c302abb743a494d7da4ef5312cd8_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\den_txn677_22_20230223144520_74fb3a68a1a142a38e531c8d5daa5e3f_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\do_jnath006_1_3f9dd056a6e64bc78bee3d0fdec759fc_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\do_jnath006_2_b6c4b4606ca248418cd32e2ed620391b_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\do_jnath018_1_20220817111005_e4e9817e232f40b09b7a391215bd4072_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\do_jnath018_2_20220817111005_94a88423bc7340b280392505a1661463_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\do_txn663_1_20230207095419_2ba35000a9484cb8ad9c6d6637c31795_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\do_txn663_2_20230207095420_14f89e9f466e456cb39f27f12dbe6d81_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\do_txn664_22_20230207100415_c1400bc1dd374b89b7b8aa8ba858a34f_master.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong-do_txn667_12_20230307175159_06a0f4dbc9c54f138c4d3e3738b0a5d4_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong-do_txn667_1_20230227095410_c20e9e2fff5e4914850edf595da74897_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong-do_txn669_1_20230227101847_41d9f3c06d1c420b89d85559c439063b_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong-do_txn669_2_20230307175555_fa129097f6e3442396ebf3771396bee6_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_jndlu030_1_20220629092358_4584f52c7d8645059179e806c9a82616_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_jndlu030_2_20220629092358_da958337e4f14897aa44aecec62a3219_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_jndng002_1_f98caec033984144ae9408fbba53437f_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_jndng002_2_d7f3183e74d44676840501d6a1643784_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_txn645_25_20230115183338_9cf0216b41a841e2ac276b15f894d881_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_txn645_32_20230130103917_5338b5159d134a8885d93467b822423c_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_txn648_25_20230115185700_f77e46a7c1a64c2dbe91a897f07316ba_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_txn648_2_20230130104226_2dd9e8fff3344fd4a0e0b08ca8161365_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_txn655_12_20230112094903_ede5e997dc734fab8ac13ab29ac0ab26_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_txn655_9_20230110144240_fd9d813dbf9c42df9985f2f4c4591397_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_txn656_1_20230109024826_a816aa9c3cca4fa694ec43efd552af0d_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\hong_txn656_2_20230113140038_5f66f0b9c2094ab39d4367055743dd83_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\kem_jnvlu001_1_99be27566bb64f47a415d779e95536a1_master.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\kem_jnvlu001_3_1694b4abbaf1467b97128155658c3f14_master.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\map_marker.png" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\nau_jnqsh006_1_d4eb8cdd86d948bea7f5d29d6352f9ae_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\nau_jnqsh006_4_ce3d8ca719e9415dbeadc4d20f51e28b_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\nau_jnvlu007_1_20220728135545_6c8ec60e50934a2a961237d1087d20c7_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\nau_jnvlu007_2_20220728135545_493f4504fb2749b5b84104b764a4fe65_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\xanh_jnaki002_1_ca4ff9e4ea4643489241721cf621c54c_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\xanh_jnaki002_2_161e17f901eb4cc5aaf606cbdcb11906_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\xanh_jnath005_1_3ccb6a52c814412cbad1932adb431651_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\xanh_jnath005_2_c92767fff4fe4eb5a7117ed9eb07b99d_grande.jpg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\xanh_jnath021_1_20220725193631_2de38a6deb9946139ac46ac9f232896d_grande.jpeg" />
+    <Content Include="Uploads\_thumbs\Images\sanpham\xanh_jnath021_2_20220725193631_5e53bd3e2f15439cb08459cda3f7ad35_grande.jpeg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3193,7 +3659,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -3207,11 +3672,36 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Menu\_MenuTop.cshtml" />
+    <Content Include="Views\Menu\_MenuProductCategory.cshtml" />
+    <Content Include="Views\Menu\_MenuArrivals.cshtml" />
+    <Content Include="Views\Products\Partial_ItemsByCateId.cshtml" />
+    <Content Include="Views\Products\Partial_ProductSales.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Menu\_MenuLeft.cshtml" />
+    <Content Include="Views\Products\ProductCategory.cshtml" />
+    <Content Include="Views\Products\Detail.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Partial_Item_Cart.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOut.cshtml" />
+    <Content Include="Views\ShoppingCart\Partial_Item_ThanhToan.cshtml" />
+    <Content Include="Views\ShoppingCart\Partial_CheckOut.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOutSuccess.cshtml" />
+    <Content Include="Views\Home\Refresh.cshtml" />
+    <Content Include="Views\News\Partial_News_Home.cshtml" />
+    <Content Include="Views\Home\Partial_Subcrice.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\News\Detail.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\VnpayReturn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\ckfinder\userfiles\" />
+    <Folder Include="Uploads\files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -3244,6 +3734,45 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303130854389_UpdateProductCategory.resx">
       <DependentUpon>202303130854389_UpdateProductCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303141457355_Update.resx">
+      <DependentUpon>202303141457355_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303161220533_Update1603.resx">
+      <DependentUpon>202303161220533_Update1603.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303161237450_Update16031.resx">
+      <DependentUpon>202303161237450_Update16031.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303161318287_Update16032.resx">
+      <DependentUpon>202303161318287_Update16032.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303191148511_Update1903.resx">
+      <DependentUpon>202303191148511_Update1903.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303201516080_Update2003.resx">
+      <DependentUpon>202303201516080_Update2003.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303250733354_UpdatePayment.resx">
+      <DependentUpon>202303250733354_UpdatePayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304041216014_CreateTBThongKe.resx">
+      <DependentUpon>202304041216014_CreateTBThongKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304110206450_UpdateEmail.resx">
+      <DependentUpon>202304110206450_UpdateEmail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304140213216_UpdateSubcribe.resx">
+      <DependentUpon>202304140213216_UpdateSubcribe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304150656187_UpdateOriginalPrice.resx">
+      <DependentUpon>202304150656187_UpdateOriginalPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304151649443_EditCategory2.resx">
+      <DependentUpon>202304151649443_EditCategory2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304151903022_AddStatus.resx">
+      <DependentUpon>202304151903022_AddStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
