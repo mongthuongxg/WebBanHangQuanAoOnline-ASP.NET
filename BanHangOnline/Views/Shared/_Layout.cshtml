@@ -57,31 +57,30 @@
                                 <ul class="top_nav_menu">
 
                                     <!-- Currency / Language / My Account -->
-
-                                   @* <li class="currency">
-                                        <a href="#">
-                                            usd
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="currency_selection">
-                                            <li><a href="#">cad</a></li>
-                                            <li><a href="#">aud</a></li>
-                                            <li><a href="#">eur</a></li>
-                                            <li><a href="#">gbp</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="language">
-                                        <a href="#">
-                                            English
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="language_selection">
-                                            <li><a href="#">French</a></li>
-                                            <li><a href="#">Italian</a></li>
-                                            <li><a href="#">German</a></li>
-                                            <li><a href="#">Spanish</a></li>
-                                        </ul>
-                                    </li>*@
+                                    @* <li class="currency">
+                                            <a href="#">
+                                                usd
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="currency_selection">
+                                                <li><a href="#">cad</a></li>
+                                                <li><a href="#">aud</a></li>
+                                                <li><a href="#">eur</a></li>
+                                                <li><a href="#">gbp</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="language">
+                                            <a href="#">
+                                                English
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="language_selection">
+                                                <li><a href="#">French</a></li>
+                                                <li><a href="#">Italian</a></li>
+                                                <li><a href="#">German</a></li>
+                                                <li><a href="#">Spanish</a></li>
+                                            </ul>
+                                        </li>*@
                                     <li class="account">
                                         @if (!Request.IsAuthenticated)
                                         {
@@ -129,13 +128,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 text-right">
-                            <div class="logo_container" >
+                            <div class="logo_container">
                                 <a href="/">JUNO<span>APPAREL</span></a>
                             </div>
                             <nav class="navbar">
                                 @Html.Action("MenuTop", "Menu")
                                 <ul class="navbar_user">
-                                   @* <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>*@
+                                    @* <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>*@
                                     <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
                                     <li class="checkout">
                                         <a href="/gio-hang">
@@ -264,3 +263,72 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<script>
+    let __protocol = document.location.protocol;//lấy giao thức ở đây là chuỗi string:"https:"
+    let __baseUrl = __protocol + '//livechat.fpt.ai/v36/src';
+
+    //Cấu hình giao diện  styles
+    let CustomStyles = {
+        // header
+        headerBackground: 'linear-gradient(86.7deg, #A5B28Cff 0.85%, #849565ff 98.94%)',
+        headerTextColor: '#ffffffff',
+        headerLogoEnable: true,
+        headerLogoLink: 'https://chatbot-tools.fpt.ai/livechat-builder/img/theme/spa/logo.svg',
+        headerText: 'Web Bán Thời Trang',
+        // main
+        primaryColor: '#9CAA81FF',
+        secondaryColor: '#D8D8D8FF',
+        primaryTextColor: '#ffffffff',
+        secondaryTextColor: '#1F1F1FFF',
+        buttonColor: '#9CAA81B3',
+        buttonTextColor: '#ffffffff',
+        bodyBackgroundEnable: true,
+        bodyBackgroundLink: 'https://chatbot-tools.fpt.ai/livechat-builder/img/theme/spa/body.svg',
+        avatarBot: 'https://chatbot-tools.fpt.ai/livechat-builder/img/theme/spa/bot.svg',
+        sendMessagePlaceholder: 'Enter your message here',
+        // float button
+        floatButtonLogo: 'https://chatbot-tools.fpt.ai/livechat-builder/img/theme/spa/logo.svg',
+        floatButtonTooltip: 'Tôi có thể giúp gì cho bạn?',
+        floatButtonTooltipEnable: true,
+        // start screen
+        customerLogo: 'https://chatbot-tools.fpt.ai/livechat-builder/img/theme/spa/logo_head.svg',
+        customerWelcomeText: 'Xin vui lòng cung cấp tên của bạn.',
+        customerButtonText: 'Start',
+        prefixEnable: false,
+        prefixType: 'radio',
+        prefixOptions: ["Anh", "Chị"],
+        prefixPlaceholder: 'Danh xưng',
+        // custom css
+        css: ''
+    }
+    let objPreDefineLiveChat = {
+        appCode: 'ac0ba8be1d01aa539cde004813f7f395',
+        themes: '',
+
+        thumb: '',
+        icon_bot: '',
+        styles: CustomStyles
+    },
+        appCodeHash = window.location.hash.substr(1);//lưu mã url
+    if (appCodeHash.length == 32) {
+        objPreDefineLiveChat.appCode = appCodeHash;
+    }
+
+    let fpt_ai_livechat_script = document.createElement('script');
+    fpt_ai_livechat_script.id = 'fpt_ai_livechat_script';
+    fpt_ai_livechat_script.src = __baseUrl + '/static/fptai-livechat.js';
+    document.body.appendChild(fpt_ai_livechat_script);
+
+    let fpt_ai_livechat_stylesheet = document.createElement('link');
+    fpt_ai_livechat_stylesheet.id = 'fpt_ai_livechat_script';
+    fpt_ai_livechat_stylesheet.rel = 'stylesheet';
+    fpt_ai_livechat_stylesheet.href = __baseUrl + '/static/fptai-livechat.css';
+    document.body.appendChild(fpt_ai_livechat_stylesheet);
+
+    fpt_ai_livechat_script.onload = function () {
+        fpt_ai_render_chatbox(objPreDefineLiveChat, __baseUrl, 'livechat.fpt.ai:443');
+    }
+</script>
+
+
