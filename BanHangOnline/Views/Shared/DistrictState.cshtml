@@ -1,0 +1,10 @@
+﻿@model BanHangOnline.Models.SQL.District
+
+<option value="">---Chọn Quận---</option>
+@if (ViewBag.District != null)
+{
+    foreach (var item in ViewBag.District)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

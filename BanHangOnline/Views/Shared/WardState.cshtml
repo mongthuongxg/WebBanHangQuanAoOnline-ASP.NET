@@ -1,0 +1,10 @@
+﻿@model BanHangOnline.Models.SQL.Ward
+<option value="">---Chọn Phường</option>
+@if (ViewBag.Ward != null)
+{
+    foreach (var item in ViewBag.Ward)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+
+}
