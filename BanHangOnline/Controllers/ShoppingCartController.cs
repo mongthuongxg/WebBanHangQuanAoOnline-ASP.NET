@@ -146,7 +146,7 @@ namespace BanHangOnline.Controllers
                     order.Phone = req.Phone;
                     order.Address = req.Address;
                     order.Email = req.Email;
-                    order.Status = 0;//chưa thanh toán / 2/đã thanh toán, 3/Hoàn thành, 4/hủy
+                    order.Status = 1;//chưa thanh toán / 2/đã thanh toán, 3/Hoàn thành, 4/hủy
                     cart.Items.ForEach(x => order.OrderDetails.Add(new OrderDetail
                     {
                         ProductId = x.ProductId,
