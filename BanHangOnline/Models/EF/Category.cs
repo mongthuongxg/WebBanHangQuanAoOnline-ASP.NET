@@ -32,7 +32,7 @@ namespace BanHangOnline.Models.EF
         [StringLength(150)]
         public string SeoKeywords { get; set; }
         public bool IsActive { get; set; }
-        public string Position { get; set; }
+        public int Position { get; set; }
         public ICollection<News> News { get; set; }
         public ICollection<Posts> Posts { get; set; }
     }
