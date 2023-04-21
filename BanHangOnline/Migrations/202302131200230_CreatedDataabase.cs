@@ -125,7 +125,7 @@
                 {
                     Id = c.Int(nullable: false, identity: true),
                     Code = c.String(nullable: false),
-                    AspNetUserID = c.String(nullable: false, maxLength: 128),
+                    CustomerName = c.String(nullable: false),
                     Phone = c.String(nullable: false),
                     Address = c.String(nullable: false),
                     TotalAmount = c.Decimal(nullable: false, precision: 18, scale: 2),
@@ -135,8 +135,7 @@
                     ModifiedDate = c.DateTime(nullable: false),
                     Modifiedby = c.String(),
                 })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.AspNetUserID);
+                .PrimaryKey(t => t.Id);
 
             CreateTable(
                 "dbo.tb_Product",
