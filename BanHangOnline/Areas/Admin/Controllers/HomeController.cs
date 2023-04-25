@@ -8,7 +8,7 @@ namespace BanHangOnline.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize(Roles = "Admin,Employee")]
+        [CustomAuthorlizeAttribute(Roles = "Admin,Employee")]
         // GET: Admin/Home
         public ActionResult Index()
         {

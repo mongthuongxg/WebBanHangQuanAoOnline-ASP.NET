@@ -58,11 +58,11 @@ namespace BanHangOnline
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "877811280314-lkbvnb398a404roartun8hs2ak5gi3m7.apps.googleusercontent.com",
+                ClientSecret = "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"
+            });
         }
     }
 }

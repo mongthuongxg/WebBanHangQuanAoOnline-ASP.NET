@@ -9,10 +9,28 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace BanHangOnline.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    public class CustomAuthorlizeAttribute : AuthorizeAttribute
+    {
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            if (!filterContext.HttpContext.User.Identity.IsAuthenticated)//Nếu người dùng chưa đăng nhập chuyển trang sang Login
+            {
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary
+                    (new { controller = "Account", action = "Login", returnUrl = filterContext.HttpContext.Request.Url }));
+
+            }
+            //Nếu người dùng đăng nhập không có quyền truy cập 
+            else
+            {
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Account", action = "Login" }));
+            }
+        }
+    }
+    [CustomAuthorlizeAttribute(Roles = "Admin")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

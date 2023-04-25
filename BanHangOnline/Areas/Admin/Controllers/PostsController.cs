@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BanHangOnline.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin,Employee")]
+    [CustomAuthorlizeAttribute(Roles = "Admin,Employee")]
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BanHangOnline.Models;
+using System.Configuration;
 
 namespace BanHangOnline.Controllers
 {
@@ -422,6 +423,23 @@ namespace BanHangOnline.Controllers
 
             base.Dispose(disposing);
         }
+
+        /*public ActionResult GoogleLogin()
+        {
+            // Lấy các thông tin cần thiết từ Web.config
+            var redirectUri = ConfigurationManager.AppSettings["googleplus.redirectUri"];
+            var clientId = ConfigurationManager.AppSettings["googleplus.clientId"];
+            var clientSecret = ConfigurationManager.AppSettings["googleplus.clientSecret"];
+
+            // Tạo một URL chứa thông tin xác thực của ứng dụng để chuyển hướng đến trang đăng nhập Google
+            var googleAuthorizationUri = new UriBuilder("https://accounts.google.com/o/oauth2/auth");
+            googleAuthorizationUri.Query = $"client_id={clientId}&redirect_uri={redirectUri}&response_type=code&scope=openid%20email%20profile";
+
+            // Chuyển hướng người dùng đến trang đăng nhập Google
+            return Redirect(googleAuthorizationUri.ToString());
+        }*/
+
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins

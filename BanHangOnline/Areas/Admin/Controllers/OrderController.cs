@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 namespace BanHangOnline.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [CustomAuthorlizeAttribute(Roles = "Admin")]
     public class OrderController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
