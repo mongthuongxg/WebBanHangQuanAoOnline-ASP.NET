@@ -276,64 +276,6 @@
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
 
-            CreateTable(
-                "dbo.City",
-                    c => new
-                    {
-                        CityId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 40),
-                    })
-                .PrimaryKey(t => t.CityId)
-                .Index(t => t.CityId);
-
-
-            CreateTable(
-                "dbo.District",
-                    c => new
-                    {
-                        DistrictId = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false, maxLength: 100),
-                        CityId = c.Int(nullable: false)
-                    })
-                .PrimaryKey(t => t.DistrictId)
-                .ForeignKey("dbo.City", t => t.CityId, cascadeDelete: false)
-                .Index(t => t.Name, unique: true)
-                .Index(t => t.DistrictId);
-
-            CreateTable(
-               "dbo.Ward",
-                   c => new
-                   {
-                       WardId = c.Int(nullable: false, identity: true),
-                       Name = c.String(nullable: false, maxLength: 100),
-                       DistrictId = c.Int(nullable: false)
-                   })
-               .PrimaryKey(t => t.WardId)
-               .ForeignKey("dbo.District", t => t.DistrictId, cascadeDelete: false)
-               .Index(t => t.Name, unique: true)
-               .Index(t => t.WardId);
-            CreateTable(
-                "dbo.Customer",
-                    c => new
-                    {
-                        CustomerID = c.String(nullable: false, maxLength: 128, defaultValueSql: "NEWID()"),
-                        FullName = c.String(nullable: false, maxLength: 128),
-                        Phone = c.String(nullable: false, maxLength: 16),
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Address = c.String(nullable: false, maxLength: 40),
-                        City = c.Int(nullable: false, identity: false),
-                        District = c.Int(nullable: false, identity: false),
-                        Ward = c.Int(nullable: false, identity: false),
-                        DateCreated = c.DateTime(nullable: false),
-                        LastUpdated = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.CustomerID)
-                .ForeignKey("dbo.City", t => t.City, cascadeDelete: false)
-                .ForeignKey("dbo.District", t => t.District, cascadeDelete: false)
-                .ForeignKey("dbo.Ward", t => t.Ward, cascadeDelete: false)
-                .ForeignKey("dbo.AspNetUsers", t => t.Id, cascadeDelete: true)
-                .Index(t => t.CustomerID);
-
 
         }
         
@@ -348,12 +290,6 @@
             DropForeignKey("dbo.tb_OrderDetail", "OrderId", "dbo.tb_Order");
             DropForeignKey("dbo.tb_Posts", "CategoryId", "dbo.tb_Category");
             DropForeignKey("dbo.tb_News", "CategoryId", "dbo.tb_Category");
-            DropForeignKey("dbo.Customer", "Ward", "dbo.Ward");
-            DropForeignKey("dbo.Customer", "District", "dbo.District");
-            DropForeignKey("dbo.Customer", "City", "dbo.City");
-            DropForeignKey("dbo.Customer", "Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.District", "CityId", "dbo.City");
-            DropForeignKey("dbo.Ward", "CityId", "dbo.DistrictId");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
@@ -365,9 +301,6 @@
             DropIndex("dbo.tb_OrderDetail", new[] { "OrderId" });
             DropIndex("dbo.tb_Posts", new[] { "CategoryId" });
             DropIndex("dbo.tb_News", new[] { "CategoryId" });
-            DropIndex("dbo.Ward", new[] { "WardId" });
-            DropIndex("dbo.District", new[] { "DistrictId" });
-            DropIndex("dbo.City", new[] { "CityId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
@@ -384,10 +317,6 @@
             DropTable("dbo.tb_News");
             DropTable("dbo.tb_Category");
             DropTable("dbo.tb_Adv");
-            DropTable("dbo.Customer");
-            DropTable("dbo.Ward");
-            DropTable("dbo.District");
-            DropTable("dbo.City");
         }
     }
 }
