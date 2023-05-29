@@ -47,6 +47,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CKFinder, Version=2.4.0.2631, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Content\ckfinder\bin\Release\CKFinder.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
     </Reference>
@@ -220,7 +224,6 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
-    <Compile Include="Controllers\ThongTinKhachHangController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -331,11 +334,6 @@
     <Compile Include="Models\Payments\VnPayLibrary.cs" />
     <Compile Include="Models\SettingSystemViewModel.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
-    <Compile Include="Models\SQL\City.cs" />
-    <Compile Include="Models\SQL\Customer.cs" />
-    <Compile Include="Models\SQL\dbWebBanHang.cs" />
-    <Compile Include="Models\SQL\District.cs" />
-    <Compile Include="Models\SQL\Ward.cs" />
     <Compile Include="Models\ThongKeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -3577,6 +3575,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jsShopping.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\images\sanpham\blazer.jpg" />
     <Content Include="Uploads\images\sanpham\cam_txn650_1_20230116092134_894c6c2e1bdf4079adc8f8b934315581_master.jpeg" />
     <Content Include="Uploads\images\sanpham\cam_txn650_2_20230202102956_d8b30597df9a43cf9d7c506c02a798f1_master.jpeg" />
     <Content Include="Uploads\images\sanpham\caro-do_jnkhc006_1_cc0d17c8428a4880a35f50e8961ebd5d_grande.jpg" />
@@ -3614,6 +3613,8 @@
     <Content Include="Uploads\images\sanpham\nau_jnqsh006_4_ce3d8ca719e9415dbeadc4d20f51e28b_grande.jpg" />
     <Content Include="Uploads\images\sanpham\nau_jnvlu007_1_20220728135545_6c8ec60e50934a2a961237d1087d20c7_grande.jpeg" />
     <Content Include="Uploads\images\sanpham\nau_jnvlu007_2_20220728135545_493f4504fb2749b5b84104b764a4fe65_grande.jpeg" />
+    <Content Include="Uploads\images\sanpham\phukien.jpg" />
+    <Content Include="Uploads\images\sanpham\women.jpg" />
     <Content Include="Uploads\images\sanpham\xanh_jnaki002_1_ca4ff9e4ea4643489241721cf621c54c_grande.jpg" />
     <Content Include="Uploads\images\sanpham\xanh_jnaki002_2_161e17f901eb4cc5aaf606cbdcb11906_grande.jpg" />
     <Content Include="Uploads\images\sanpham\xanh_jnath005_1_3ccb6a52c814412cbad1932adb431651_grande.jpg" />
